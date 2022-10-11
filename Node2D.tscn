@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Tanque1.gd" type="Script" id=1]
+[ext_resource path="res://tank1.png" type="Texture" id=2]
+[ext_resource path="res://Tanque2.gd" type="Script" id=3]
+[ext_resource path="res://tank2.png" type="Texture" id=4]
+[ext_resource path="res://Limites.gd" type="Script" id=5]
+[ext_resource path="res://Bullet.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 40.75, 45 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 25.5, 300 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 25, 300 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 512, 19.5 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 512, 19 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Tanque1" type="KinematicBody2D" parent="."]
+position = Vector2( 65, 299 )
+script = ExtResource( 1 )
+Projetil = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="Tanque1"]
+position = Vector2( 7.62939e-06, -1 )
+rotation = 3.14159
+scale = Vector2( 0.554054, 0.469072 )
+texture = ExtResource( 2 )
+
+[node name="Collision1" type="CollisionShape2D" parent="Tanque1"]
+position = Vector2( 0, -1 )
+shape = SubResource( 1 )
+
+[node name="canhao1" type="Position2D" parent="Tanque1"]
+position = Vector2( 1, -72 )
+
+[node name="Tanque2" type="KinematicBody2D" parent="."]
+position = Vector2( 954, 309 )
+script = ExtResource( 3 )
+Projetil = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="Tanque2"]
+position = Vector2( 0.261333, 0.852376 )
+rotation = 3.14159
+scale = Vector2( 0.572073, 0.556773 )
+texture = ExtResource( 4 )
+
+[node name="Collision2" type="CollisionShape2D" parent="Tanque2"]
+position = Vector2( 0, 1 )
+shape = SubResource( 1 )
+
+[node name="canhao2" type="Position2D" parent="Tanque2"]
+position = Vector2( 2, -71 )
+
+[node name="Limites" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="LimiteEsquerda" type="Area2D" parent="Limites"]
+
+[node name="esquerda" type="CollisionShape2D" parent="Limites/LimiteEsquerda"]
+position = Vector2( -25.5, 300 )
+shape = SubResource( 2 )
+
+[node name="LimiteDireita" type="Area2D" parent="Limites"]
+
+[node name="direita" type="CollisionShape2D" parent="Limites/LimiteDireita"]
+position = Vector2( 1049, 300 )
+shape = SubResource( 3 )
+
+[node name="LimiteCima" type="Area2D" parent="Limites"]
+
+[node name="cima" type="CollisionShape2D" parent="Limites/LimiteCima"]
+position = Vector2( 512, -19.5 )
+shape = SubResource( 4 )
+
+[node name="LimiteBaixo" type="Area2D" parent="Limites"]
+
+[node name="baixo" type="CollisionShape2D" parent="Limites/LimiteBaixo"]
+position = Vector2( 512, 619 )
+shape = SubResource( 5 )
